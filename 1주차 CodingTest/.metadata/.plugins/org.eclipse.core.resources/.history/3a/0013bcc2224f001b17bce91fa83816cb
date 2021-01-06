@@ -1,0 +1,23 @@
+package soulware_codingtest;
+
+public class test4 {
+	static String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+			"20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+
+	public static void main(String[] args) {
+
+		String str = "20200309_최종_확정2.png";
+
+		check(str);
+	}
+
+	public static String check(String str) {
+
+		return str;
+
+	}
+
+	public static String checkLine(String str) {
+		return str;
+	}
+}

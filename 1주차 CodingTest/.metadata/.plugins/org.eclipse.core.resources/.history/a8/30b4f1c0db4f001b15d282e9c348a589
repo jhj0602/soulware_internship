@@ -1,0 +1,61 @@
+package soulware_codingtest;
+
+public class Test111 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ExamFile exam = new ExamFile();
+		exam.start("20200309_최종_확정2.png");
+	}
+
+}
+
+class ExamFile {
+	static final String[] FILES = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png",
+			"20200309_최종_확정.png", "20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+
+	public void start(String input) {
+
+		// 파일명 + 확장자
+		String [] parsed = parseFilename(input);
+		String name = parsed[0];
+		String ext = parsed[1];
+		
+		
+		print(name);
+		print(ext);
+		// 비교
+		existName(input);
+
+	}
+
+	private String[] parseFilename(String filename) {
+		String[] result = new String[2];
+
+		int index = filename.lastIndexOf('.');
+		if (index != -1) {
+			String name = filename.substring(0, index);
+			String ext = filename.substring(index+1);
+			result[0] = name;
+			result[1] = ext;
+		} else {
+			result[0] = filename;
+			result[1] = "";
+		}
+		return result;
+	}
+
+	private boolean existName(String input) {
+		
+		for(int i=0,max=FILES.length;i<max;i++) {
+			print(FILES[i]);
+		}
+		
+		return false;
+	}
+	
+	private void print(String out) {
+		System.out.println(out);
+	}
+}

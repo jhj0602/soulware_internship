@@ -1,0 +1,38 @@
+package soulware_codingtest;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class test8 {
+	static String str;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		str = br.readLine();
+		int len = str.length();
+		int E = 0;// 영문
+		int N = 0;// 숫자
+		int S = 0;// 특수문자
+		for (int i = 0; i < len; i++) {
+			if (len < 8) {
+				System.out.println("다시만드세요");
+				break;
+			}
+			if (Character.isDigit(str.charAt(i))) {
+				N++;
+			}
+			if (str.matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝]*")) {
+				S++;//특수문자
+			}
+			if
+		}
+
+	}
+
+//	public static String restart() {
+//		return null;
+//	}
+
+}

@@ -1,0 +1,55 @@
+package soulware_codingtest;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class test8 {
+	static String pw;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		pw = br.readLine();
+		check(pw);
+		int len = pw.length();
+		int E = 0;// 영문
+		int N = 0;// 숫자
+		int S = 0;// 특수문자
+//		System.out.println(15165);
+		for (int i = 0; i < len; i++) {
+			if (len < 8) {
+				System.out.println("다시만드세요");
+				break;
+			}
+			if (Character.isDigit(pw.charAt(i))) {
+				N++;
+				continue;
+			}
+			if (pw.matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝]*")) {
+				S++;// 특수문자
+				continue;
+			}
+			if (pw.matches("[A-Z]")) {
+				E++;
+				continue;
+			}
+			if (i + 1 == len) {
+				if (E != 0 || N != 0 || S != 0) {
+					System.out.println("비밀번호 검증 성공: " + pw);
+				}
+			}
+		}
+
+	}
+
+	public static  boolean check(String pw) {
+		for (int i = 0; i < pw.length(); i++) {
+		if(pw.matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝]*")&&Character.isDigit(pw.charAt(i)&&pw.matches("[A-Z]")) {
+			
+		}
+		}
+		return false;
+	}
+
+}

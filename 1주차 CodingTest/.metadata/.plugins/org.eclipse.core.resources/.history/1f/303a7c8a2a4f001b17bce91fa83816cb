@@ -1,0 +1,38 @@
+package soulware_codingtest;
+
+import java.util.Arrays;
+
+public class test4 {
+	static String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+			"20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+
+	public static void main(String[] args) {
+
+		String userStr = "20200309_최종_확정2.png";
+
+		String result = check(userStr);
+	}
+
+	public static String check(String userStr) {
+		String createLine = "";// 리턴할 생성 문자열
+		for (int i = 0; i < line.length; i++) {
+			String[] ArrayLine = line[i].split("\\.");// 초기배열 split
+
+			String tempLine = userStr;// 사용자 String
+
+			String[] userLine = tempLine.split("\\.");// 사용자 String split
+
+			if (ArrayLine[0].equals(userLine[0])) {
+				createLineFunction(line[i]);
+			}
+		}
+
+		return createLine;
+
+	}
+
+	public static String createLineFunction(String str) {// String create function
+
+		return str;
+	}
+}

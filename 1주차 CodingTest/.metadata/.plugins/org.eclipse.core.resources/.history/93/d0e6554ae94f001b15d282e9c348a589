@@ -1,0 +1,64 @@
+package soulware_codingtest;
+
+import java.util.Arrays;
+
+public class test4 {
+	static String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+			"20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+
+	public static void main(String[] args) {
+		String[] parse = new String[2];
+		String filename = "20200309_최종_확정2(1).png";
+		FileNameCheck FNK = new FileNameCheck();
+		FNK.print(filename);
+		parse = FNK.fileParsing(filename);
+
+	}
+
+}
+
+class FileNameCheck {
+	public void print(String filename) {
+		System.out.println(filename);
+	}
+
+	public String createFile(String filename) {
+		String newInput = filename;
+		String[] parseName = fileParsing(newInput);
+		String name = parseName[0];
+		String ext = parseName[1];
+
+		int count = 1;
+
+		while (existName(newInput)) {
+			newInput = name + "(" + count + ")." + ext;
+			count++;
+		}
+
+		return newInput;
+
+	}
+
+	public String[] fileParsing(String filename) {
+		String[] nameParsing = new String[2];
+		int parseIndex = filename.lastIndexOf('.');
+		if (parseIndex != -1) {
+			String name = filename.substring(0, parseIndex);
+			String ext = filename.substring(parseIndex + 1, filename.length());
+			nameParsing[0] = name;
+			nameParsing[1] = ext;
+			return nameParsing;
+
+		} else {
+			nameParsing[0] = filename;
+			nameParsing[1] = "";
+		}
+		return nameParsing;
+	}
+
+	public boolean existName(String input) {
+		for (int i = 0; i < line.length; i++) {
+
+		}
+	}
+}

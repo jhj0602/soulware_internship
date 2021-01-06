@@ -1,0 +1,36 @@
+package soulware_codingtest;
+
+import java.util.Arrays;
+
+public class test4 {
+	static String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+			"20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+
+	public static void main(String[] args) {
+
+		String str = "20200309_최종_확정2.png";
+//		Arrays.sort(line);
+//		for(String i : line) {
+//			System.out.println(i);
+//		}
+		String result = check(str);
+	}
+
+	public static String check(String str) {
+		String createLine ="";
+		for (int i = 0; i < line.length; i++) {
+			String strLine = str;
+			String[] splitLine = strLine.split("\\.");
+//			if(line[i])
+			System.out.println(splitLine[i]);
+		}
+		
+		return createLine;
+
+	}
+
+	public static String createLine(String str) {// String create function
+
+		return str;
+	}
+}

@@ -1,0 +1,166 @@
+package soulware_codingtest;
+
+public class Test111 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		try {
+
+			ExamFile exam = new ExamFile();
+			String result = exam.generateFilename("20200309_최종_확정2.png");
+			System.out.println("result : " + result);
+
+			result = exam.generateFilename(null);
+			System.out.println("result : " + result);
+
+			result = exam.generateFilename("2020030");
+			System.out.println("result : " + result);
+			result = exam.generateFilename(".png");
+			System.out.println("result : " + result);
+			result = exam.generateFilename("bbbbbbb");
+			System.out.println("result : " + result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			//
+		}
+
+	}
+
+}
+
+class ExamFile { //코드 리뷰
+	static final String[] FILES = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png",
+			"20200309_최종_확정.png", "20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png",
+			"20200309_최종_확정2(2).png" };
+
+	public String generateFilename(String input) throws Exception {
+		print("input : " + input);
+		String newInput = input;
+		// 파일명 + 확장자
+		if (input != null) {
+		
+			String[] parsed = parseFilename(input);
+			String name = parsed[0];
+			String ext = parsed[1];
+
+			int count = 1;
+
+			// 비교
+			newInput = input;
+			while (existName(newInput)) {
+				newInput = name + "(" + count + ")." + ext;
+				count++;
+			}
+		}
+
+		return newInput;
+	}
+
+	private String[] parseFilename(String filename) {
+		String[] result = new String[2];
+
+		int index = filename.lastIndexOf('.');
+		if (index != -1) {
+			String name = filename.substring(0, index);
+			String ext = filename.substring(index + 1);
+			result[0] = name;
+			result[1] = ext;
+		} else {
+			result[0] = filename;
+			result[1] = "";
+		}
+		return result;
+	}
+
+	private boolean existName(String input) {
+		if (input != null) {
+			for (int i = 0, max = FILES.length; i < max; i++) {
+				if (FILES[i].equals(input)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private void print(String out) {
+		System.out.println(out);
+		// logback
+
+	}
+
+}
+
+
+
+
+
+//package soulware_codingtest; //형준 코드 수정
+//
+//public class test4 {
+//
+//	public static void main(String[] args) {
+//		String[] parse = new String[2];
+//		String filename = null;
+//		FileNameCheck FNK = new FileNameCheck();
+//
+//		FNK.print(FNK.createFile(filename));
+//
+//	}
+//
+//}
+//
+//class FileNameCheck {
+//	String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+//			"20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+//
+//	public void print(String filename) {
+//		System.out.println(filename);
+//	}
+//
+//	public String createFile(String filename) {
+//		String newInput = filename;
+//		String[] parseName = fileParsing(newInput);
+//		String name = parseName[0];
+//		String ext = parseName[1];
+//
+//		int count = 1;
+//
+//		while (existName(newInput)) {
+//			newInput = name + "(" + count + ")." + ext;
+//			count++;
+//		}
+//
+//		return newInput;
+//
+//	}
+//
+//	public String[] fileParsing(String filename) {
+//		String[] nameParsing = new String[2];
+//		int parseIndex = filename.lastIndexOf('.');
+//		if (parseIndex != -1) {
+//			String name = filename.substring(0, parseIndex);
+//			String ext = filename.substring(parseIndex + 1, filename.length());
+//			nameParsing[0] = name;
+//			nameParsing[1] = ext;
+//			return nameParsing;
+//
+//		} else {
+//			nameParsing[0] = filename;
+//			nameParsing[1] = "";
+//		}
+//		return nameParsing;
+//	}
+//
+//	public boolean existName(String input) {
+//
+//		for (int i = 0; i < line.length; i++) {
+//			if (input.equals(line[i])) {
+//				return true;
+//			}
+//
+//		}
+//		return false;
+//	}
+//}

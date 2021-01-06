@@ -1,0 +1,27 @@
+package soulware_codingtest;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+
+public class test3 {
+	public static void main(String[] args) {
+		String formatDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		System.out.println(formatDate);
+		String []weeks2 = {"일","월","화","수","목","금","토"};
+		  String someday = formatDate; //특정일자
+		  Calendar c2= Calendar.getInstance();
+		  
+
+		  c2.set(Integer.parseInt(someday.substring(0,4))
+		        ,Integer.parseInt(someday.substring(4,6))-1
+		        ,Integer.parseInt(someday.substring(6,8)) );
+		  
+		  System.out.println(weeks2[c2.get(Calendar.DAY_OF_WEEK)-1]);  
+	}
+	
+	
+	
+
+}

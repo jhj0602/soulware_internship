@@ -1,0 +1,70 @@
+package soulware_codingtest;
+
+import java.util.Scanner;
+
+public class test9 {
+	static private int front;
+	static private int rear;
+	static private int maxSize;
+	static private Object[] queueArray;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		test9 q = new test9(100);
+		q.offer(3);
+		q.offer(6);
+		q.print();
+
+	}
+
+	public test9(int maxSize) {
+
+		this.front = 0;
+		this.rear = -1;
+		this.maxSize = maxSize;
+		this.queueArray = new Object[maxSize];
+	}
+
+	// 큐가 비어있는지 확인
+	public boolean empty() {
+		return (front == rear + 1);
+	}
+
+	// 큐가 꽉 찼는지 확인
+	public boolean full() {
+		return (rear == maxSize - 1);
+	}
+
+	// 큐 rear에 데이터 등록
+	public void offer(Object item) {
+
+//		if (full())
+//			throw new ArrayIndexOutOfBoundsException();
+
+		queueArray[++rear] = item;
+	}
+
+	// 큐에서 front 데이터 조회
+	public Object peek() {
+
+//		if (empty())
+//			throw new ArrayIndexOutOfBoundsException();
+
+		return queueArray[front];
+	}
+
+	// 큐에서 front 데이터 제거
+	public Object remove() {
+
+		Object item = peek();
+		front++;
+		return item;
+	}
+	public void print() {
+		for(Object q: queueArray) {
+			System.out.print(q+" ");
+		}
+	}
+
+}

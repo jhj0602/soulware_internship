@@ -1,0 +1,65 @@
+package soulware_codingtest;
+
+import java.util.Arrays;
+
+public class test4 {
+	static String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+			"20200309_최종_확정2.png", "20200309_최종_확정2(1).png", "20200309_최종_확정2(3).png" };
+
+	public static void main(String[] args) {
+
+		String userStr = "20200309_최종_확정2.png";
+
+		String result = check(userStr);
+		System.out.println(result);
+	}
+
+	public static String check(String userStr) {
+		String createLine = "";// 리턴할 생성 문자열
+		for (int i = 0; i < line.length; i++) {
+			System.out.println(userStr);
+			String[] ArrayLine = line[i].split("\\.");// 초기배열 split
+
+			String tempLine = userStr;// 사용자 String
+
+			String[] userLine = tempLine.split("\\.");// 사용자 String split
+
+			if (ArrayLine[0].equals(userLine[0])) {
+				userStr = createLineFunction(ArrayLine[0]);
+
+				i = 0;// 같은 문자열이 전에 있을수도 있기 때문에 초기화
+			}
+		}
+
+		createLine = userStr + ".png";
+		return createLine;
+
+	}
+
+	public static String createLineFunction(String str) {// String create function
+		
+		String userStr = str;
+		int num = 1;
+		int len = userStr.length();
+		userStr.charAt(len - 1);
+		
+		if (userStr.charAt(len - 1) == ')') {
+			char c = userStr.charAt(len - 2);
+			
+			if (Character.isDigit(c)) {
+				num = (int) c;
+				num++;
+			
+				String reStr = userStr.substring(0, len - 4);
+				userStr = reStr + "(" + num + ")";
+			}
+		} else {
+
+			userStr = userStr + "(" + num + ")";
+			System.out.println(userStr);
+		}
+
+		return userStr;
+	}
+
+}

@@ -1,0 +1,10 @@
+package soulware_codingtest;
+
+import java.time.*;
+
+public class test3 {
+	public static void main(String[] args) {
+		LocalDate localDate = LocalDate.now();
+		System.out.println(localDate);
+	}
+}

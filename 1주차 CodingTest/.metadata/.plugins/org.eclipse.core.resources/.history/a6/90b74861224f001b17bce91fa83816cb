@@ -1,0 +1,34 @@
+package soulware_codingtest;
+
+public class test4 {
+	static String[] line = { "20200309_최종.png", "20200309_최종_수정.png", "20200309_최종_수정(1).png", "20200309_최종_확정.png",
+			"20200309_최종_확정2.png" ,"20200309_최종_확정2(1).png","20200309_최종_확정2(3).png"};
+
+	public static void main(String[] args) {
+
+		int len = line.length;
+
+		String str = "20200309_최종_확정2.png";
+		System.out.println(len);
+
+		System.out.println(check(str));
+	}
+
+	public static String check(String str) {
+		int num = 0;
+		String[] nameNo2 = str.split("\\.");
+		for (int i = 0; i < line.length; i++) {
+			if (line[i].contains(nameNo2[0])) {
+				num++;
+
+			}
+
+		}
+		String[] nameNo = str.split("\\.");
+		System.out.println(num);
+		String s1 = nameNo[0] + "(" + num + ")";
+		String s2 = nameNo[1];
+		String str2 = s1 + "." + s2;
+		return str2;
+	}
+}
