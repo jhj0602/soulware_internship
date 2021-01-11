@@ -1,112 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        #output {
-            width: 100px;
-            height: 50px;
-            background-color: #ccc;
-            border: 1px solid #999;
+        .yellow1 {
+            color: yellow;
+        }
+
+        .black1 {
+            color: black;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .timerBox {
+            width: 200px;
+            outline: 2px solid black;
+        }
+
+        .timerBox .time {
+            font-size: 30pt;
+            color: #4C4C4C;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        .btnBox {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .btnBox .fa {
+            margin: 0px 5px;
+            font-size: 30pt;
+            color: #FAED7D;
+            cursor: pointer;
         }
     </style>
+    <meta charset="UTF-8">
+    <title>StopWatch</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 </head>
 
 <body>
-    <p id="output"></p>
-    <h3>전구 1</h3>
-    <p id="light">OFF</p>
-    <h3>전구 2</h3>
-    <p id="light2">OFF</p>
-    <h3>전구 3</h3>
-    <p id="light3">OFF</p>
-    <h3>전구 1,2,3 켜지는 시간</h3>
-    <p id="lightAll">다 켜졌어요  :   :</p>
-
-
-    <div id="controls">
-        <button id="startPause" onclick="startPause()">Start</button>
-        <button onclick="reset()">Reset</button>
+    <div>
+        <div id='box' class="box">
+            <div id='timerBox' class="timerBox">
+                <div id="time" class="time">00:00:00</div>
+            </div>
+            <div class="btnBox">
+                <i id="startbtn" class="fa fa-play" aria-hidden="true"></i>
+                <i id="pausebtn" class="fa fa-pause" aria-hidden="true"></i>
+                <i id="stopbtn" class="fa fa-stop" aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
-
+    <br>
+    <br>
+    <h3>전구 1</h3>
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lightbulb"
+        viewBox="0 0 16 16" id='light1'>
+        <path
+            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+    </svg>
+    <h3>전구 2</h3>
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lightbulb"
+        viewBox="0 0 16 16" id='light2'>
+        <path
+            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+    </svg>
+    <h3>전구 3</h3>
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lightbulb"
+        viewBox="0 0 16 16" id='light3'>
+        <path
+            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+    </svg>
+    <h3>전구 1,2,3 켜지는 시간</h3>
+    <p id="lightAll">다 켜졌어요 00:00:00</p>
+    <p id="min3">3분이 지났을때 00:00:00</p>
     <script>
-        // JavaScript
-        var time = 0;
-        var running = 0;
+        var time = 208;
+        var starFlag = true;
+        $(document).ready(function () {
+            buttonEvt();
+        });
 
-        function startPause() {
-            if (running == 0) {
-                running = 1;
-                increment();
-                document.getElementById("startPause").innerHTML = "Pause";
+        function init() {
+            document.getElementById("time").innerHTML = "00:00:00";
+        }
+        function generateStopwatchText(time) {
+
+            min = Math.floor(time / 60);
+            hour = Math.floor(min / 60);
+            sec = time % 60;
+            min = min % 60;
+
+            timeString = String(hour).padStart(2, '0') + ":" + String(min).padStart(2, '0') + ":" +  String(sec).padStart(2, '0');
+            return {
+                "min": min, "hour": hour, "sec": sec, "timeString": timeString
+            };
+
+        }
+        function timeLgiht1(light1, id) {
+            if (light1) {
+                document.getElementById(id).style.color = "yellow";
             } else {
-                running = 0;
-                document.getElementById("startPause").innerHTML = "Resume";
-            }
-
-        }
-
-
-        function reset() {
-            running = 0;
-            time = 0;
-            document.getElementById("startPause").innerHTML = "Start";
-            document.getElementById("output").innerHTML = "00:00:00";
-           
-        }
-
-
-        function increment() {
-            if (running == 1) {
-                setInterval(function () {
-                    time++;
-                    
-                    var mins = Math.floor(time/60);
-                    var secs = time%60;
-                    var tenths = time % 10;
-
-                    if (mins < 10) {
-                        mins = "0" + mins;
-                    }
-                    if (secs < 10) {
-                        secs = "0" + secs;
-                    }
-                    if (secs != 0) {
-                        if (secs % 3 == 0) {
-                            document.getElementById('light').innerHTML = "ON";
-                        }
-                        else if(secs % 3 != 0){
-                            document.getElementById('light').innerHTML = "OFF";
-                        }
-                        if (secs % 5 == 0) {
-                            document.getElementById('light2').innerHTML = "ON";
-                        }
-                        else if(secs % 5 != 0){
-                            document.getElementById('light2').innerHTML = "OFF";
-                        }
-                        if (secs % 7 == 0) {
-                            document.getElementById('light3').innerHTML = "ON";
-                        }
-                        else if(secs % 7 != 0){
-                            document.getElementById('light3').innerHTML = "OFF";
-                        }
-
-                        if(secs % 3 == 0&&secs % 5 == 0&&secs % 7 == 0){
-                            document.getElementById('lightAll').innerHTML = "다 켜졌어요"+ mins + ":" + secs%60 +":0"+tenths;
-                        }
-                    }
-
-
-                    document.getElementById('output').innerHTML = mins + ":" + secs%60+":0"+tenths ;
-                    increment();
-
-                }, 100);
+                document.getElementById(id).style.color = "black";
             }
         }
+        function buttonEvt() {
+            var hour = 0;
+            var min = 0;
+            var sec = 0;
+            var timer;
 
+
+
+
+
+            $("#startbtn").click(function () {
+
+                if (starFlag) {
+
+                    starFlag = false;
+
+                    if (time == 0) {
+                        init();
+                    }
+                    var light1 = false;//false이면 안켜짐
+                    var light2 = 0;
+                    var light3 = 0;
+
+
+                    timer = setInterval(function () {
+                        time++;
+
+
+                        const { min, hour, sec, timeString } = generateStopwatchText(time);
+
+
+                        if (time % 3 == 0) {
+                            light1 = !light1
+                        }
+
+                        if (time % 7 == 0) {
+                            light2 = !light2;
+                        }
+                        if (time % 10 == 0) {
+                            light3 = !light3;
+                        }
+                        console.log(light1);
+
+                        timeLgiht1(light1, 'light1');
+                        timeLgiht1(light2, 'light2');
+                        timeLgiht1(light3, 'light3');
+
+
+                        if (light1 && light2 && light3) {
+                            $("#lightAll").html("다 켜졌어요" + timeString)
+                           
+
+                        }
+                        if (time == 180) {
+                            $("#min3").html("3분이 지났을때" + timeString)
+                           
+                        }
+                     
+                        $("#time").html(timeString)
+                    }, 1000);
+                }
+            });
+
+            // pause btn
+            $("#pausebtn").click(function () {
+                if (time != 0) {
+                    $(".fa").css("color", "#FAED7D")
+                    this.style.color = "#4C4C4C";
+                    clearInterval(timer);
+                    starFlag = true;
+                }
+            });
+
+            // stop btn
+            $("#stopbtn").click(function () {
+                if (time != 0) {
+                    $(".fa").css("color", "#FAED7D")
+                    this.style.color = "#4C4C4C";
+                    clearInterval(timer);
+                    starFlag = true;
+                    time = 0;
+                    init();
+                }
+            });
+        }
     </script>
 </body>
 
