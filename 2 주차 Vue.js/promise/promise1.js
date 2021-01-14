@@ -1,9 +1,10 @@
-function successCallback(result) {
-    console.log("Audio file ready at URL: " + result);
-  }
-  
-  function failureCallback(error) {
-    console.log("Error generating audio file: " + error);
-  }
-  
-  createAudioFileAsync(audioSettings, successCallback, failureCallback);
+doSomething().then(function(result) {
+    return doSomethingElse(result);
+  })
+  .then(function(newResult) {
+    return doThirdThing(newResult);
+  })
+  .then(function(finalResult) {
+    console.log('Got the final result: ' + finalResult);
+  })
+  .catch(failureCallback);

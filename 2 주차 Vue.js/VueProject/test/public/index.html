@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- <div id="app1">
+    <button v-on:click="getData"> 호출 </button>
+  </div> -->
+  <div id="app1" v-once>
+
+    <!-- <img v-bind:src="message" width="220"> -->
+    <button v-on:click="getData">이미지 가져오기</button>
+  </div>
+
+  <script>
+    // var Buffer = require('buffer');
+    // console.log(Buffer);
+    new Vue({
+      el: '#app1',
+      methods: {
+        getData: function () {
+          return axios
+            .get("https://images.unsplash.com/photo-1610048899906-d8f64bc45464?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format", {
+              responseType: 'arraybuffer'
+            })
+            .then(response => {
+
+              const buffer = Buffer.from(response.data, 'base64');
+              // console.log(buffer)
+            })
+            .catch(ex => {
+              console.error(ex);
+            });
+        }
+      }
+    });
+
+
+
+    // var app1 = new Vue({
+    //   el: '#app1',
+    //   data: {
+    //     message: 'message';
+    //   },
+
+    // methods: {
+    //   getData: function () {
+    //    return  axios.get('https://images.unsplash.com/photo-1610048899906-d8f64bc45464?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format', {  responseType : 'arraybuffer'  })
+
+    //   }
+    // }
+
+
+    // });
+    // var url = "https://images.unsplash.com/photo-1610048899906-d8f64bc45464?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format";
+
+    // function get() {
+    //   return axios
+    //     .get("https://images.unsplash.com/photo-1610048899906-d8f64bc45464?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format", {
+    //       responseType: 'arraybuffer'
+    //     })
+    //     .then(response => {
+    //       const buffer = Buffer.from(response.data, 'base64');
+    //       console.log(buffer)
+    //     })
+    //     .catch(ex => {
+    //       console.error(ex);
+    //     });
+    // }
+  </script>
+</body>
+
+</html>
