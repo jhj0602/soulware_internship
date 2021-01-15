@@ -101,7 +101,7 @@
             sec = time % 60;
             min = min % 60;
 
-            timeString = String(hour).padStart(2, '0') + ":" + String(min).padStart(2, '0') + ":" +  String(sec).padStart(2, '0');
+            timeString = String(hour).padStart(2, '0') + ":" + String(min).padStart(2, '0') + ":" + String(sec).padStart(2, '0');
             return {
                 "min": min, "hour": hour, "sec": sec, "timeString": timeString
             };
@@ -164,14 +164,14 @@
 
                         if (light1 && light2 && light3) {
                             $("#lightAll").html("다 켜졌어요" + timeString)
-                           
+
 
                         }
                         if (time == 180) {
                             $("#min3").html("3분이 지났을때" + timeString)
-                           
+
                         }
-                     
+
                         $("#time").html(timeString)
                     }, 1000);
                 }
