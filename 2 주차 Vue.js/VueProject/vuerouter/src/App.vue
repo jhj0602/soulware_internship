@@ -6,6 +6,7 @@
      
     </div>
      <router-link to="/hj">HJ</router-link>
+      <router-link to="/exstopwatch">EX</router-link>
     <router-view/>
   </div>
 </template>
