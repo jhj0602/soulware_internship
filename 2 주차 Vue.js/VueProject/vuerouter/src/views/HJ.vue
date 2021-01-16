@@ -16,31 +16,25 @@
     </div>
     <br />
     <br />
-    <!-- <h3>전구 1</h3>
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lightbulb"
-        viewBox="0 0 16 16" id='light1'>
-        <path
-            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
-    </svg>
-    <h3>전구 2</h3>
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lightbulb"
-        viewBox="0 0 16 16" id='light2'>
-        <path
-            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
-    </svg>
-    <h3>전구 3</h3>
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lightbulb"
-        viewBox="0 0 16 16" id='light3'>
-        <path
-            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
-    </svg>
-    <h3>전구 1,2,3 켜지는 시간</h3>
-    <p id="lightAll">다 켜졌어요 00:00:00</p>
-    <p id="min3">3분이 지났을때 00:00:00</p> -->
+    <h1>전구1</h1>
+
+    <div v-if="light1 === true">켜짐</div>
+    <div v-else >꺼짐</div>
+
+    <h1>전구2</h1>
+
+    <div v-if="light2 === true">켜짐</div>
+    <div v-else>꺼짐</div>
+    <h1>전구3</h1>
+
+    <div v-if="light3 === true">켜짐</div>
+    <div v-else>꺼짐</div>
+  
   </div>
 </template>
 
 <script>
+
 export default {
   name: "HJ",
   data() {
@@ -51,24 +45,29 @@ export default {
       timeString: null,
     };
   },
-  timeSplit() {
+  timeLight() {
     return {
-      // hour: 0,
-      // min: 0,
-      // sec: 0,
-      //   timeString: null,
+      light1: false,
+      light2: false,
+      light3: false,
     };
   },
   //ES6
+  
   computed: {
     formatTime() {
       var min = Math.floor(this.time / 60);
       var hour = Math.floor(min / 60);
       var sec = this.time % 60;
       min = min % 60;
-      var pp = String(hour).padStart(2, '0') + ":" + String(min).padStart(2, '0') + ":" + String(sec).padStart(2, '0');
-      console.log(pp);
-      return pp;
+      var timeString =
+        String(hour).padStart(2, "0") +
+        ":" +
+        String(min).padStart(2, "0") +
+        ":" +
+        String(sec).padStart(2, "0");
+      // console.log(timeString);
+      return timeString;
       // return "sss"
     },
   },
@@ -76,7 +75,18 @@ export default {
     startbtn() {
       this.timer = setInterval(() => {
         this.time++;
-        // generateStopwatchText(this.time);
+
+        if (this.time % 3 == 0) {
+          this.light1 = !this.light1;
+          console.log(this.light1);
+        }
+
+        if (this.time % 7 == 0) {
+          this.light2 = !this.light2;
+        }
+        if (this.time % 10 == 0) {
+          this.light3 = !this.light3;
+        }
       }, 1000);
     },
     stopbtn() {
