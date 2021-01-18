@@ -1,5 +1,5 @@
 <template>
-  <div class="hj">
+  <div>
     <h1>This is an HJ page</h1>
 
     <div id >
@@ -27,12 +27,19 @@
 
     {{message3}}
     <!-- vue filter 사용  -->
+    <ChildLight></ChildLight>
   </div>
+  
 </template>
 
 <script>
+import ChildLight from './Child-Light.vue';
+
 export default {
-  name: "HJ",
+  name: "Stopwatch",
+  components:{
+      ChildLight,
+  },
   data() {
     return {
       timer: null,

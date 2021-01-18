@@ -5,10 +5,11 @@
       <router-link to="/about">About</router-link>
      
     </div>
-     <router-link to="/hj">HJ</router-link>
-      <router-link to="/exstopwatch">EX</router-link>
+  
     <router-view/>
     <Global-Component></Global-Component>
+    <Stopwatch></Stopwatch>
+  
   </div>
 </template>
 
