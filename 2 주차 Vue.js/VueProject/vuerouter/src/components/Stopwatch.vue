@@ -14,9 +14,9 @@
         </div>
       </div>
     </div>
-    <br />
-    <br />
-    <h1>전구1</h1>
+    <br/>
+    <br/>
+    <!-- <h1>전구1</h1>
 
     {{ message1 }}
 
@@ -25,9 +25,9 @@
     
     <h1>전구3</h1>
 
-    {{message3}}
+    {{message3}} -->
     <!-- vue filter 사용  -->
-    <ChildLight></ChildLight>
+    <ChildLight :nameOfChild1="message1" :nameOfChild2="message2" :nameOfChild3="message3"></ChildLight>
   </div>
   
 </template>
