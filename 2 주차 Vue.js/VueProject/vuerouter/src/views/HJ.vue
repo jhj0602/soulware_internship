@@ -2,7 +2,7 @@
   <div class="hj">
     <h1>This is an HJ page</h1>
 
-    <div>
+    <div id >
       <div id="box" class="box">
         <div id="timerBox" class="timerBox">
           {{ formatTime }}
@@ -18,23 +18,19 @@
     <br />
     <h1>전구1</h1>
 
-    <div v-if="light1 === true">켜짐</div>
-    <div v-else >꺼짐</div>
+    {{ message1 }}
 
     <h1>전구2</h1>
-
-    <div v-if="light2 === true">켜짐</div>
-    <div v-else>꺼짐</div>
+    {{ message2 }}
+    
     <h1>전구3</h1>
 
-    <div v-if="light3 === true">켜짐</div>
-    <div v-else>꺼짐</div>
-  
+    {{message3}}
+    <!-- vue filter 사용  -->
   </div>
 </template>
 
 <script>
-
 export default {
   name: "HJ",
   data() {
@@ -43,6 +39,9 @@ export default {
       time: 0,
       starFlag: true,
       timeString: null,
+      message1: "OFF",
+      message2: "OFF",
+      message3: "OFF",
     };
   },
   timeLight() {
@@ -53,7 +52,7 @@ export default {
     };
   },
   //ES6
-  
+
   computed: {
     formatTime() {
       var min = Math.floor(this.time / 60);
@@ -66,10 +65,11 @@ export default {
         String(min).padStart(2, "0") +
         ":" +
         String(sec).padStart(2, "0");
-      // console.log(timeString);
+
       return timeString;
-      // return "sss"
+      
     },
+    
   },
   methods: {
     startbtn() {
@@ -78,14 +78,28 @@ export default {
 
         if (this.time % 3 == 0) {
           this.light1 = !this.light1;
-          console.log(this.light1);
+          if (this.light1) {
+            this.message1 = "ON";
+          } else {
+            this.message1 = "OFF";
+          }
         }
 
         if (this.time % 7 == 0) {
           this.light2 = !this.light2;
+           if (this.light2) {
+            this.message2 = "ON";
+          } else {
+            this.message2 = "OFF";
+          }
         }
         if (this.time % 10 == 0) {
           this.light3 = !this.light3;
+           if (this.light3) {
+            this.message3 = "ON";
+          } else {
+            this.message3 = "OFF";
+          }
         }
       }, 1000);
     },
