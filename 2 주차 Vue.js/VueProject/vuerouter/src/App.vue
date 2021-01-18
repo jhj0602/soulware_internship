@@ -8,6 +8,7 @@
      <router-link to="/hj">HJ</router-link>
       <router-link to="/exstopwatch">EX</router-link>
     <router-view/>
+    <Global-Component></Global-Component>
   </div>
 </template>
 
