@@ -1,24 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import Image from '../components/ImageEx.vue'; //게시판 리스트 컴포넌트 호출
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:'/image',
+    name: 'Image',
+    component: Image
   },
-
+ 
 ]
 
 const router = new VueRouter({

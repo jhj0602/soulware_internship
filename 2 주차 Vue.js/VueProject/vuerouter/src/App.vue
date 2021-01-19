@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -35,24 +31,22 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>open_in_new</v-icon>
       </v-btn>
+    
     </v-app-bar>
 
     <v-main>
-      
-      <stopwatch/>
-
+        <v-btn><router-link to="/image">IMAGE</router-link></v-btn>
+      <stopwatch />
     </v-main>
   </v-app>
 </template>
 
 <script>
-
-import stopwatch from './components/Stopwatch';
+import stopwatch from "./components/Stopwatch";
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
- 
     stopwatch,
   },
 
