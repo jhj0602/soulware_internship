@@ -2,48 +2,43 @@
   <div>
     <h1>This is an HJ page</h1>
 
-    <div id >
+    <div id>
       <div id="box" class="box">
-        <div id="timerBox" class="timerBox">
-          {{ formatTime }}
-        </div>
-        <div class="btnBox">
-          <i @click="startbtn" class="fa fa-play" aria-hidden="true"></i>
-          <i @click="pausebtn" class="fa fa-pause" aria-hidden="true"></i>
-          <i @click="stopbtn" class="fa fa-stop" aria-hidden="true"></i>
-        </div>
+        <!-- <timebtn :time="formatTime"@start="start " @pause="pause" @stop="stop"/> -->
+
+        <timebtn
+          :time="formatTime"
+          @start="startbtn"
+          @pause="pausebtn"
+          @stop="stopbtn"
+        />
+        <!-- 부모 자식 전달  자식-> 부모전달 -->
+        <!-- vuex -->
       </div>
     </div>
-    <br/>
-    <br/>
-    <!-- <h1>전구1</h1>
 
-    {{ message1 }}
-
-    <h1>전구2</h1>
-    {{ message2 }}
-    
-    <h1>전구3</h1>
-
-    {{message3}} -->
-    <!-- vue filter 사용  -->
-    <ChildLight :nameOfChild1="message1" :nameOfChild2="message2" :nameOfChild3="message3"></ChildLight>
+    <br />
+    <br />
+    <lightt :nameOfChild="message1" bulb="전구1" />
+    <lightt :nameOfChild="message2" bulb="전구2" />
+    <lightt :nameOfChild="message3" bulb="전구3" />
   </div>
-  
 </template>
 
 <script>
-import ChildLight from './Child-Light.vue';
-
+import lightt from "./timelight/lighttime.vue";
+import timebtn from "./timelight/stopbutton.vue";
 export default {
   name: "Stopwatch",
-  components:{
-      ChildLight,
+  components: {
+    lightt,
+    timebtn,
   },
   data() {
     return {
       timer: null,
       time: 0,
+
       starFlag: true,
       timeString: null,
       message1: "OFF",
@@ -74,9 +69,7 @@ export default {
         String(sec).padStart(2, "0");
 
       return timeString;
-      
     },
-    
   },
   methods: {
     startbtn() {
@@ -94,7 +87,7 @@ export default {
 
         if (this.time % 7 == 0) {
           this.light2 = !this.light2;
-           if (this.light2) {
+          if (this.light2) {
             this.message2 = "ON";
           } else {
             this.message2 = "OFF";
@@ -102,7 +95,7 @@ export default {
         }
         if (this.time % 10 == 0) {
           this.light3 = !this.light3;
-           if (this.light3) {
+          if (this.light3) {
             this.message3 = "ON";
           } else {
             this.message3 = "OFF";
